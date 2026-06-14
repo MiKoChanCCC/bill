@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { NavBar, DatePicker } from "antd-mobile";
+import { useSelector } from "react-redux";
 import classNames from "classnames";
 import dayjs from "dayjs";
+import _ from "lodash";
 import "./index.scss";
 
 const Month = () => {
@@ -9,6 +11,12 @@ const Month = () => {
   const [currentTime, setCurrentTime] = useState(() => {
     return dayjs(new Date()).format("YYYY-MM");
   });
+  const { billList } = useSelector((state) => state.bill);
+  const monthGroup = useMemo(() => {
+    return _.groupBy(billList, (item) => dayjs(item.date).format("YYYY-MM"));
+  }, [billList]);
+  console.log("asd", monthGroup);
+
   const confirm = (data) => {
     setVisible(false);
     const formatData = dayjs(data).format("YYYY-MM");
