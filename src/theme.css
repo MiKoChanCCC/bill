@@ -1,0 +1,9 @@
+/* 全局主题色，意为在任何情况下primary的颜色都为105,174,120 */
+:root:root{
+  --adm-color-primary:rgb(105,174,120)
+}
+
+/* 局部主题色，意为在purple类名下的primary的颜色为#a062d4 */
+/* .purple{
+  --adm-color-primary:#a062d4
+} */
