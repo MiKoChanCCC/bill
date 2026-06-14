@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchBillList } from "@/store/modules/billReducer";
+import { useNavigate } from "react-router-dom";
 import { TabBar } from "antd-mobile";
 import {
   BillOutline,
@@ -29,11 +30,15 @@ const tabs = [
 ];
 
 export default function Layout() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   // const { billList } = useSelector((state) => state.bill);
   useEffect(() => {
     dispatch(fetchBillList());
   }, [dispatch]);
+  const switchRoute = (path) => {
+    navigate(path);
+  };
 
   return (
     <div className="layout">
@@ -41,7 +46,7 @@ export default function Layout() {
         <Outlet />
       </div>
       <div className="footer">
-        <TabBar>
+        <TabBar onChange={switchRoute}>
           {tabs.map((item) => (
             <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
           ))}
