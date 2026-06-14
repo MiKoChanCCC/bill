@@ -47,6 +47,7 @@
   "devDependencies": {
     "@craco/craco": "^7.1.0",
     "concurrently": "^10.0.3",
-    "json-server": "^1.0.0-beta.15"
+    "json-server": "^1.0.0-beta.15",
+    "sass": "^1.101.0"
   }
 }
