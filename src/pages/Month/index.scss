@@ -1,6 +1,6 @@
 .monthlyBill {
   --ka-text-color: #191d26;
-  height: 100%;
+  min-height: 100%;
   background: linear-gradient(180deg, #ffffff, #f5f5f5 100%);
   background-size: 100% 240px;
   background-repeat: no-repeat;
@@ -17,9 +17,9 @@
   }
 
   .content {
-    height: 573px;
     padding: 0 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
     &::-webkit-scrollbar {
@@ -30,7 +30,7 @@
       height: 135px;
       padding: 20px 20px 0px 18.5px;
       margin-bottom: 10px;
-      background-image: url(https://zqran.gitee.io/images/ka/month-bg.png);
+      background-image: url(https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/reactbase/ka/month-bg.png);
       background-size: 100% 100%;
 
       .date {

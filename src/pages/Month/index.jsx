@@ -1,7 +1,18 @@
+import { useState } from "react";
 import { NavBar, DatePicker } from "antd-mobile";
+import classNames from "classnames";
 import "./index.scss";
 
 const Month = () => {
+  const [visible, setVisible] = useState(false);
+  const confirm = () => {
+    setVisible(false);
+  };
+
+  const trueVisible = () => {
+    setVisible(true);
+  };
+
   return (
     <div className="monthlyBill">
       <NavBar className="nav" backArrow={false}>
@@ -12,7 +23,10 @@ const Month = () => {
           {/* 时间切换区域 */}
           <div className="date">
             <span className="text">2023 | 3月账单</span>
-            <span className="arrow expand"></span>
+            <span
+              className={classNames("arrow", visible && "expand")}
+              onClick={trueVisible}
+            ></span>
           </div>
           {/* 统计区域 */}
           <div className="twoLineOverview">
@@ -34,7 +48,10 @@ const Month = () => {
             className="kaDate"
             title="记账日期"
             precision="month"
-            visible={false}
+            visible={visible}
+            onConfirm={confirm}
+            onCancel={() => setVisible(false)}
+            onClose={() => setVisible(false)}
             max={new Date()}
           />
         </div>
