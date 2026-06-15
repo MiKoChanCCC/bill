@@ -29,7 +29,7 @@ const Month = () => {
     setVisible(false);
     const formatData = dayjs(data).format("YYYY-MM");
     setCurrentTime(formatData);
-    setCurrentMonthList(monthGroup[formatData]);
+    setCurrentMonthList(monthGroup[formatData] || []);
   };
   // console.log(currentMonthList);
 

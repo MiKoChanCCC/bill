@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useMemo, useState } from "react";
 import { billTypeToName } from "@/constants";
 import "./index.scss";
-import Icon from "@/components/icon";
+import Icon from "@/components/Icon";
 
 const DayBill = ({ billList, date }) => {
   const dayList = useMemo(() => {
@@ -30,7 +30,7 @@ const DayBill = ({ billList, date }) => {
     <div className={classNames("dailyBill")}>
       <div className="header">
         <div className="dateIcon">
-          <span className="date">{"03月23日"}</span>
+          <span className="date">{date}</span>
           <span
             className={classNames("arrow", visible && "expand")}
             onClick={() => setVisible(!visible)}
