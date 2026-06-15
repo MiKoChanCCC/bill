@@ -1,16 +1,20 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { NavBar, DatePicker } from "antd-mobile";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 import dayjs from "dayjs";
-import _ from "lodash";
+import _, { now } from "lodash";
 import "./index.scss";
 
 const Month = () => {
+  // 控制日期选择
   const [visible, setVisible] = useState(false);
+
   const [currentTime, setCurrentTime] = useState(() => {
     return dayjs(new Date()).format("YYYY-MM");
   });
+
+  // 将异步数据分组
   const { billList } = useSelector((state) => state.bill);
   const monthGroup = useMemo(() => {
     return _.groupBy(billList, (item) => dayjs(item.date).format("YYYY-MM"));
@@ -18,6 +22,7 @@ const Month = () => {
   // console.log("asd", monthGroup);
 
   const [currentMonthList, setCurrentMonthList] = useState([]);
+
   // 确认的回调函数
   const confirm = (data) => {
     setVisible(false);
@@ -25,7 +30,16 @@ const Month = () => {
     setCurrentTime(formatData);
     setCurrentMonthList(monthGroup[formatData]);
   };
-  console.log(currentMonthList);
+  // console.log(currentMonthList);
+
+  // 初始化时显示的数据
+  useEffect(() => {
+    // 获取并格式化当前时间
+    const nowDate = dayjs().format("YYYY-MM");
+    if (monthGroup[nowDate]) {
+      setCurrentMonthList(monthGroup[nowDate]);
+    }
+  }, [monthGroup]);
 
   const monthList = useMemo(() => {
     const pay = currentMonthList
