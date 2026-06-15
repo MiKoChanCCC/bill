@@ -32,7 +32,6 @@ const tabs = [
 export default function Layout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { billList } = useSelector((state) => state.bill);
   useEffect(() => {
     dispatch(fetchBillList());
   }, [dispatch]);
