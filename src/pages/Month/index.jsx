@@ -5,6 +5,7 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import _, { now } from "lodash";
 import "./index.scss";
+import DayBill from "./components/DayBill";
 
 const Month = () => {
   // 控制日期选择
@@ -14,7 +15,7 @@ const Month = () => {
     return dayjs(new Date()).format("YYYY-MM");
   });
 
-  // 将异步数据分组
+  // 将异步数据按月分组
   const { billList } = useSelector((state) => state.bill);
   const monthGroup = useMemo(() => {
     return _.groupBy(billList, (item) => dayjs(item.date).format("YYYY-MM"));
@@ -63,6 +64,18 @@ const Month = () => {
     setVisible(true);
   };
 
+  // 按日分组
+  const dayGroup = useMemo(() => {
+    const groupData = _.groupBy(currentMonthList, (item) =>
+      dayjs(item.date).format("YYYY-MM-DD"),
+    );
+    const keys = Object.keys(groupData);
+    return {
+      groupData,
+      keys,
+    };
+  }, [currentMonthList]);
+
   return (
     <div className="monthlyBill">
       <NavBar className="nav" backArrow={false}>
@@ -81,15 +94,15 @@ const Month = () => {
           {/* 统计区域 */}
           <div className="twoLineOverview">
             <div className="item">
-              <span className="money">{monthList.pay}</span>
+              <span className="money">{monthList.pay.toFixed(2)}</span>
               <span className="type">支出</span>
             </div>
             <div className="item">
-              <span className="money">{monthList.income}</span>
+              <span className="money">{monthList.income.toFixed(2)}</span>
               <span className="type">收入</span>
             </div>
             <div className="item">
-              <span className="money">{monthList.total}</span>
+              <span className="money">{monthList.total.toFixed(2)}</span>
               <span className="type">结余</span>
             </div>
           </div>
@@ -105,6 +118,11 @@ const Month = () => {
             max={new Date()}
           />
         </div>
+        {dayGroup.keys.map((key) => {
+          return (
+            <DayBill key={key} date={key} billList={dayGroup.groupData[key]} />
+          );
+        })}
       </div>
     </div>
   );
