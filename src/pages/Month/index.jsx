@@ -15,13 +15,35 @@ const Month = () => {
   const monthGroup = useMemo(() => {
     return _.groupBy(billList, (item) => dayjs(item.date).format("YYYY-MM"));
   }, [billList]);
-  console.log("asd", monthGroup);
+  // console.log("asd", monthGroup);
 
+  const [currentMonthList, setCurrentMonthList] = useState([]);
+  // 确认的回调函数
   const confirm = (data) => {
     setVisible(false);
     const formatData = dayjs(data).format("YYYY-MM");
     setCurrentTime(formatData);
+    setCurrentMonthList(monthGroup[formatData]);
   };
+  console.log(currentMonthList);
+
+  const monthList = useMemo(() => {
+    const pay = currentMonthList
+      .filter((item) => item.type === "pay")
+      .reduce((pre, next) => {
+        return pre + next.money;
+      }, 0);
+    const income = currentMonthList
+      .filter((item) => item.type === "income")
+      .reduce((pre, next) => {
+        return pre + next.money;
+      }, 0);
+    return {
+      pay,
+      income,
+      total: pay + income,
+    };
+  }, [currentMonthList]);
 
   const trueVisible = () => {
     setVisible(true);
@@ -45,15 +67,15 @@ const Month = () => {
           {/* 统计区域 */}
           <div className="twoLineOverview">
             <div className="item">
-              <span className="money">{100}</span>
+              <span className="money">{monthList.pay}</span>
               <span className="type">支出</span>
             </div>
             <div className="item">
-              <span className="money">{200}</span>
+              <span className="money">{monthList.income}</span>
               <span className="type">收入</span>
             </div>
             <div className="item">
-              <span className="money">{200}</span>
+              <span className="money">{monthList.total}</span>
               <span className="type">结余</span>
             </div>
           </div>
