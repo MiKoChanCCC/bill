@@ -83,69 +83,6 @@
       "date": "2023-04-03T11:14:56.036Z",
       "useFor": "food",
       "id": "19"
-    },
-    {
-      "type": "pay",
-      "money": -100,
-      "date": "2026-06-15T14:14:34.825Z",
-      "useFor": "drinks",
-      "id": "Aif9GQ-G6AA"
-    },
-    {
-      "type": "income",
-      "money": 100,
-      "date": "2026-06-15T14:14:41.435Z",
-      "useFor": "cashgift",
-      "id": "FK97lZkW6x4"
-    },
-    {
-      "type": "income",
-      "money": 100,
-      "date": "2026-06-15T14:14:47.142Z",
-      "useFor": "cashgift",
-      "id": "1dWRMOltKNE"
-    },
-    {
-      "type": "income",
-      "money": 100,
-      "date": "2026-06-15T14:14:57.662Z",
-      "useFor": "financial",
-      "id": "5n9VHvBBFws"
-    },
-    {
-      "type": "pay",
-      "money": -100,
-      "date": "2026-06-15T14:15:04.753Z",
-      "useFor": "travel",
-      "id": "Urhv4gwAhAc"
-    },
-    {
-      "type": "income",
-      "money": 1000,
-      "date": "2026-05-14T16:00:00.000Z",
-      "useFor": "overtimepay",
-      "id": "ZUFA8pSVgLI"
-    },
-    {
-      "type": "pay",
-      "money": -110,
-      "date": "2026-03-14T16:00:00.000Z",
-      "useFor": "audio",
-      "id": "ZvlwvJ9oIaE"
-    },
-    {
-      "type": "pay",
-      "money": -111110,
-      "date": "2026-01-14T16:00:00.000Z",
-      "useFor": "audio",
-      "id": "pjRikESFUcM"
-    },
-    {
-      "type": "pay",
-      "money": -101000,
-      "date": "2026-06-12T16:00:00.000Z",
-      "useFor": "",
-      "id": "3jla-meYyIg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
