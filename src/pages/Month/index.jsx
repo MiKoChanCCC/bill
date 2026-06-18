@@ -3,7 +3,7 @@ import { NavBar, DatePicker } from "antd-mobile";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 import dayjs from "dayjs";
-import _, { now } from "lodash";
+import _ from "lodash";
 import "./index.scss";
 import DayBill from "./components/DayBill";
 
